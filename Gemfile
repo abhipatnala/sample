@@ -28,7 +28,18 @@ gem 'turbolinks', '~> 5'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 2.5'
 
-gem 'oauth2'
+
+gem 'omniauth-trakt'
+gem 'devise'
+
+gem 'jquery-turbolinks'
+
+gem 'autoprefixer-rails'
+
+
+
+gem 'bootstrap-sass'
+
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 3.0'
 # Use ActiveModel has_secure_password
@@ -45,6 +56,7 @@ end
 group :production do
   gem 'pg', '0.18.4'
 end
+
 
 group :development do
   # Access an IRB console on exception pages or by using <%= console %> anywhere in the code.
