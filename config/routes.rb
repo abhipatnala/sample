@@ -5,7 +5,7 @@ Rails.application.routes.draw do
 #match '/auth/verify', :to => 'sessions#create',:via => [:get,:post]
 
 
-match 'pages/oAuth' => 'pages#oAuth',  :via => [:get]
+match 'pages/confirm' => 'pages#oAuth',  :via => [:get,:post]
   
   get 'pages/index'
 devise_for :users
