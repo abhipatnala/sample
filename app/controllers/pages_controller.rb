@@ -21,6 +21,7 @@ require "oauth2"
 @client_redirect_url = 'https://mighty-ocean-92089.herokuapp.com/pages/confirm'
 @client = OAuth2::Client.new(@client_id, @client_secret, :token_url => '/oauth/token', :site =>'https://trakt.tv')
   		#@token_request = @client.auth_code.get_token(params[:code], :redirect_uri => @client_redirect_url)
+  		@authorize_url = @client.auth_code.authorize_url(:redirect_uri => @client_redirect_url, :response_type => 'code')
   @token_request = @client.auth_code.get_token(params[:code], :redirect_uri => @client_redirect_url)		
 @token_request.options[:header_format] = "OAuth %s"
 @token_string = token_request.token
