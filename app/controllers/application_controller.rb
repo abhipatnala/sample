@@ -13,11 +13,11 @@ class ApplicationController < ActionController::Base
   :site => "https://trakt.tv/"
  )
 
-puts client.auth_code.authorize_url(:redirect_uri => "http://localhost:3000/oauth2/callback")
+puts client.auth_code.authorize_url(:redirect_uri => "https://mighty-ocean-92089.herokuapp.com/oauth2/callback")
 
 code = gets.chomp
 
-token = client.auth_code.get_token(code, :redirect_uri => "http://localhost:3000/oath2/callback")
+token = client.auth_code.get_token(code, :redirect_uri => "https://mighty-ocean-92089.herokuapp.com/oath2/callback")
 
 token = OAuth2::AccessToken.new(client, token.token, {
   :mode => :query,
