@@ -1,24 +1,25 @@
 class PagesController < ApplicationController
+
   def index
+
+require "oauth2"
+	@client_id = "6b938c19460b1a087e44da2131d779933d168f6e5ec10c6fae3ea48212e084d4"
+@client_secret = "5e1c6d482224119ba52e794f7f8aaf8a9a08fc7fb612efd0c23b87dda7a1fad1"
+@client_url = 'https://mighty-ocean-92089.herokuapp.com/'
+@client_redirect_url = 'https://mighty-ocean-92089.herokuapp.com/pages/oauth'
+@client = OAuth2::Client.new(@client_id, @client_secret, :token_url => '/oauth/token', :site =>'https://trakt.tv')
   	
-  	end
 
-  	def oAuth
-require 'uri'
-require 'net/http'
-
-url = URI("http://www.trakt.tv/?oauth_consumer_key=c64414858aa29c01a150739d54a71e770a90a676bbff6ed9330b7652685dde4e&oauth_signature_method=HMAC-SHA1&oauth_timestamp=1493366530&oauth_nonce=kJ9bx2&oauth_version=1.0&oauth_signature=FXoaPPOoRRrbZwCiHEl0lOMi5HU%3D")
-
-http = Net::HTTP.new(url.host, url.port)
-
-request = Net::HTTP::Get.new(url)
-request["cache-control"] = 'no-cache'
-request["postman-token"] = 'e0e429f6-b385-9bfd-b988-3acaa04319ab'
-
-
-response = http.request(request)
-
+@authorize_url = @client.auth_code.authorize_url(:redirect_uri => @client_redirect_url, :response_type => 'code')
+  	end 
+  	def oauth
+  		token_request = @client.auth_code.get_token(params[:code], :redirect_uri => @client_redirect_url)
+@token_request.options[:header_format] = "OAuth %s"
+@token_string = token_request.token
 
   	end
+
+
+  	
 
 end
